@@ -9,7 +9,7 @@ from markitdown import MarkItDown
 
 INPUT_DIR = Path(__file__).parent
 OUTPUT_DIR = INPUT_DIR / "markdown_output"
-SUPPORTED = (".pdf", ".xlsx", ".xls")
+SUPPORTED = (".pdf", ".xlsx", ".xls", ".docx", ".jpg", ".jpeg", ".png", ".gif", ".webp", ".bmp", ".tiff")
 
 def main():
     input_path = INPUT_DIR
