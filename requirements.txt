@@ -1,1 +1,6 @@
+# Core dependency for PDF, Excel, Word, and image conversion
 markitdown[all]
+
+# Optional: OCR support for image files
+pytesseract>=0.3.13
+Pillow>=9.0.0
