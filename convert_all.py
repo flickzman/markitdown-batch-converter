@@ -76,11 +76,22 @@ def main():
             print(f"  [OK]   {file_path.name}")
             ok += 1
         except Exception as e:
-            print(f"  [FAIL] {file_path.name}  ->  {e}")
+            error_msg = str(e)
+            # Provide helpful guidance for missing dependencies
+            if "MissingDependencyException" in error_msg:
+                if "pdf" in error_msg.lower():
+                    print(f"  [FAIL] {file_path.name}  ->  Missing PDF support. Run: pip install markitdown[pdf]")
+                elif "xlsx" in error_msg.lower() or "xls" in error_msg.lower():
+                    print(f"  [FAIL] {file_path.name}  ->  Missing Excel support. Run: pip install markitdown[xlsx]")
+                else:
+                    print(f"  [FAIL] {file_path.name}  ->  Missing dependencies. Run: pip install markitdown[all]")
+            else:
+                print(f"  [FAIL] {file_path.name}  ->  {e}")
             fail += 1
 
     print(f"\nDone. {ok} converted, {fail} failed.")
-    print(f"Markdown files saved in: {OUTPUT_DIR}")
+    if ok > 0:
+        print(f"Markdown files saved in: {OUTPUT_DIR}")
 
 
 if __name__ == "__main__":
